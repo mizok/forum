@@ -3,24 +3,34 @@ lockfileVersion: 5.3
 specifiers:
   '@babel/core': ^7.12.16
   '@babel/eslint-parser': ^7.12.16
+  '@popperjs/core': ^2.11.2
   '@vue/cli-plugin-babel': ~5.0.0
   '@vue/cli-plugin-eslint': ~5.0.0
+  '@vue/cli-plugin-router': ~5.0.0
   '@vue/cli-service': ~5.0.0
+  bootstrap: ^5.1.3
   core-js: ^3.8.3
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
+  moment: ^2.29.1
   vue: ^2.6.14
+  vue-router: ^3.5.1
   vue-template-compiler: ^2.6.14
 
 dependencies:
+  '@popperjs/core': 2.11.2
+  bootstrap: 5.1.3_@popperjs+core@2.11.2
   core-js: 3.21.1
+  moment: 2.29.1
   vue: 2.6.14
+  vue-router: 3.5.3
 
 devDependencies:
   '@babel/core': 7.17.5
   '@babel/eslint-parser': 7.17.0_@babel+core@7.17.5+eslint@7.32.0
   '@vue/cli-plugin-babel': 5.0.1_60e714a6245a2cb9bb301eeda68bf83d
   '@vue/cli-plugin-eslint': 5.0.1_edb2fe9e9a8e71c3c1afcd5183c2e243
+  '@vue/cli-plugin-router': 5.0.1_@vue+cli-service@5.0.1
   '@vue/cli-service': 5.0.1_7966456f7c4998b4f361cb1f497c5549
   eslint: 7.32.0
   eslint-plugin-vue: 8.5.0_eslint@7.32.0
@@ -1316,6 +1326,10 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
+  /@popperjs/core/2.11.2:
+    resolution: {integrity: sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==}
+    dev: false
+
   /@sideway/address/4.1.3:
     resolution: {integrity: sha512-8ncEUtmnTsMmL7z1YPB47kPUq7LpKWJNFPsRzHiIajGC5uXlWGn+AmkYPcHNl8S4tcEGx+cnORnNYaw2wvL+LQ==}
     dependencies:
@@ -2296,6 +2310,14 @@ packages:
   /boolbase/1.0.0:
     resolution: {integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=}
     dev: true
+
+  /bootstrap/5.1.3_@popperjs+core@2.11.2:
+    resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
+    peerDependencies:
+      '@popperjs/core': ^2.10.2
+    dependencies:
+      '@popperjs/core': 2.11.2
+    dev: false
 
   /brace-expansion/1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -4436,6 +4458,10 @@ packages:
     resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
     dev: true
 
+  /moment/2.29.1:
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
+    dev: false
+
   /mrmime/1.0.0:
     resolution: {integrity: sha512-a70zx7zFfVO7XpnQ2IX1Myh9yY4UYvfld/dikWRnsXxbyvMcfz+u6UfgNAtH+k2QqtJuzVpv6eLTx1G2+WKZbQ==}
     engines: {node: '>=10'}
@@ -6186,6 +6212,10 @@ packages:
       loader-utils: 2.0.2
       webpack: 5.70.0
     dev: true
+
+  /vue-router/3.5.3:
+    resolution: {integrity: sha512-FUlILrW3DGitS2h+Xaw8aRNvGTwtuaxrRkNSHWTizOfLUie7wuYwezeZ50iflRn8YPV5kxmU2LQuu3nM/b3Zsg==}
+    dev: false
 
   /vue-style-loader/4.1.3:
     resolution: {integrity: sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg==}

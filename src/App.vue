@@ -1,28 +1,27 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="restaurant-forum">
+    <NavbarItem />
+
+    <main role="main" class="mt-5 bg-white">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+/* eslint-disable  */
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
+import NavbarItem from "./components/NavbarItem.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
+    NavbarItem,
+  },
+
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
