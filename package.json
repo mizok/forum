@@ -1,8 +1,7 @@
 {
-  "name": "forum",
-  "version": "1.0.0",
-  "description": "## Project setup ``` pnpm install ```",
-  "main": "babel.config.js",
+  "name": "forum-front-end-vue",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "vue-cli-service serve",
@@ -21,7 +20,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
+    "@babel/eslint-parser": "^7.17.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
