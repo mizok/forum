@@ -1,4 +1,3 @@
-
 <script>
 import NavTabs from "./../components/NavTabs.vue";
 import RestaurantsNavPills from "./../components/RestaurantsNavPills.vue";
@@ -334,7 +333,13 @@ export default {
         />
     </div>
         <!-- 分頁標籤 RestaurantPagination -->
-        <Pagination />
+        <Pagination 
+         :current-page="currentPage"
+         :total-page="totalPage"        
+         :previous-page="previousPage"
+         :next-page="nextPage"
+         :categoryId="categoryId"   
+        />
     </div>
 
 </template>

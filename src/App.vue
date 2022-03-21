@@ -9,7 +9,6 @@
 </template>
 
 <script>
-/* eslint-disable  */
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import NavbarItem from "./components/NavbarItem.vue";

@@ -2,7 +2,26 @@
 export default {
     name: 'Pagination',
     props:{
+      categoryId: {
+        type: [String, Number],
+        default: ''
+      },
+      currentPage:{
         type: Number,
+        default: 1
+      },
+      totalPage: {
+        type: Array,
+        required: true
+      },
+      previousPage: {
+        type: Number,
+        required: true
+      },
+      nextPage: {
+        type: Number,
+        required: true
+      }
     }
 
 }
@@ -10,55 +29,60 @@ export default {
 
 <template>
     <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <!-- 前一頁 previousPage -->
-      <li class="page-item">
-        <a
-          class="page-link"
-          aria-label="Previous"
-          href="#"
+      <ul class="pagination">
+        <!-- 前一頁 previousPage -->
+        <li 
+          v-show="previousPage"
+          :class="[
+            'page-item',
+            {
+              disabled: currentPage === 1 
+            }
+          ]"
         >
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
+          <router-link
+            aria-label="Previous"
+            class="page-link"
+            :to="{name: 'restaurants',
+              query: { categoryId, page: previousPage }}"
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </router-link>        
+          
+        </li>
 
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="#"
+        <!-- 頁碼 -->
+        <li 
+          :class="[
+          'page-item', 
+          {active: currentPage === page}]"
+          v-for="page in totalPage"
+          :key="page"
         >
-          1
-        </a>
-      </li>
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="#"
-        >
-          2
-        </a>
-      </li>
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="#"
-        >
-          3
-        </a>
-      </li>
+          <router-link
+            class="page-link"
+            :to="{name: 'restaurants', query: { categoryId, page }}"
+          >
+            {{ page }}
+          </router-link>  
+        </li>
 
-      <!-- 後一頁 nextPage -->
-      <li class="page-item">
-        <a
-          class="page-link"
-          aria-label="Next"
-          href="#"
-        >
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+
+        <!-- 後一頁 nextPage -->
+        <li 
+          v-show="nextPage"
+          :class="['page-item', { disabled: currentPage === totalPage.length }]"
+          >
+            <router-link
+              class="page-link"
+              :to="{ name: 'restaurants', query: { categoryId, page: nextPage } }"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&raquo;</span>
+            </router-link>
+        </li>
+      </ul>
+    </nav>
 </template>
 
 

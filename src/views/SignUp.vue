@@ -6,20 +6,20 @@ export default {
     data(){
         return{
             name: '',
-            eamil:'',
+            email:'',
             password: '',
             passwordCheck:'',
         }
     },
     methods:{
-        handleClick(){
+        handleSubmit(){
             const data = JSON.stringify({
                 name: this.name,
                 email: this.email,
                 password: this.password,
                 passwordCheck:this.passwordCheck,
             })
-      console.log('data', data)   
+            console.log('data', data)   
         }
     },
 
@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div class="container py-5">
-    <form class="w-100">
+    <form class="w-100" @submit.prevent.stop="handleSubmit">
       <div class="text-center mb-4">
         <h1 class="h3 mb-3 font-weight-normal">
           Sign Up
@@ -93,7 +93,6 @@ export default {
       </div>
 
       <button
-        @handleClick.prevent
         class="btn btn-lg btn-primary btn-block mb-3"
         type="submit"
       >
