@@ -8,7 +8,7 @@ export default {
     },
     data(){
         return{
-            users: this.initialTops
+            user: this.initialTops
         }
     },
     methods: {
@@ -29,8 +29,8 @@ export default {
 </script>
 
 <template>
-      <div class="row text-center">
-      <div class="col-3" v-for="user in users" :key="user.id">
+      <!-- <div class="row text-center"> -->
+      <div class="col-3">
         <router-link to="/">
           <img
             src="http://via.placeholder.com/300x300?text=No+Image"
@@ -59,7 +59,7 @@ export default {
           </button>
         </p>
       </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <style>

@@ -78,7 +78,14 @@ export default {
       美食達人
     </h1>
     <hr>
-    <Tops :initial-tops="users"/>
+    <div class="row text-center">
+      <Tops 
+       :initial-tops="users"
+       v-for="user in users" 
+       :key="user.id"
+      />
+    </div>
+
   </div>
 </template>
 
