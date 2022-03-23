@@ -1,20 +1,22 @@
 <script>
-import moment from "moment";
+// import moment from "moment";
+import { fromNowFilter } from "../utils/mixins";
 export default {
+    mixins: [ fromNowFilter ],
     props:{
         comments:{
             type:Array,
             required: true,
         }
     },
-    filters:{
-        fromNow(datetime){
-            if(!datetime){
-                return '-'
-            }
-            return moment(datetime).fromNow()
-        }
-    },
+    // filters:{
+    //     fromNow(datetime){
+    //         if(!datetime){
+    //             return '-'
+    //         }
+    //         return moment(datetime).fromNow()
+    //     }
+    // },
 
 }
 </script>
@@ -27,9 +29,11 @@ export default {
     <div class="card-body">
       <div v-for="comment in comments" :key="comment.id">
         <h4>
-          <a href="#">
-            {{comment.Restaurant.name}}
-          </a>
+          <router-link
+            :to="{ name: 'restaurant', params: {id: comment.Restaurant.id}}"
+          >
+            {{ comment.Restaurant.name }}
+          </router-link>
         </h4>
         <p>{{comment.text }} </p>by
         <a href="#">

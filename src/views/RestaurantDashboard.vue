@@ -1,6 +1,5 @@
 <script>
-import NavTabs from "./../components/NavTabs.vue";
-// import RestaurantDashboard from "./../components/RestaurantDashboard.vue";
+
 const DummyData = {
     "restaurants": [
         {
@@ -167,105 +166,40 @@ const DummyData = {
 }
 
 export default {
-    name: 'RestaurantTop',
-    components:{
-        NavTabs,
-        // RestaurantDashboard,
-    },
+    name: 'RestaurantDashboard',
     data(){
-      return{
-        restaurants: [],
-        isLoading: true
-      }
-    },
-    methods:{
-      fetchTopRestaurants(){
-        this.restaurants = DummyData.restaurants
-      },
-      addFavorite(){
-        console.log('addFavorite');
-        this.restaurant = {
-            ...this.restaurant,  // 保留餐廳內原有資料
-            isFavorited: true
+        return{
+
         }
-      },
-      deleteFavorite(){
-        console.log('deleteFavorite');
-        this.restaurant = {
-            ...this.restaurant,
-            isFavorited: false
-        }
-      },
     },
-    created () {
-      this.fetchTopRestaurants()
-    },
+    
 
 }
 </script>
 
 <template>
-  <div class="container py-5">
-    <NavTabs />
-    <h1 class="mt-5">
-      人氣餐廳
-    </h1>
+    <div class="container py-5">
+    <div>
+      <h1>{{ restaurant.name }}</h1>
+      <span class="badge badge-secondary mt-1 mb-3">
+        {{ restaurant.categoryName }}
+      </span>
+    </div>
 
     <hr>
-    <div
-      v-for="restaurant in restaurants"
-      :key="restaurant.id"
-      class="card mb-3"
-      style="max-width: 540px;margin: auto;"
-    >
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <a href="#">
-            <img
-              class="card-img"
-              :src="restaurant.image"
-            >
-          </a>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">
-              {{ restaurant.name }}
-            </h5>
-            <span class="badge badge-secondary">收藏數：0</span>
-            <p class="card-text">
-              {{ restaurant.description }}
-            </p>
-            <!-- <router-link
-              :to="{ name: 'dashboard'}"
-              class="btn btn-primary mr-2"
-            > Show
-            </router-link> -->
-            <a
-              href="#"
-              class="btn btn-primary mr-2"
-            >Show</a>
 
-            <button
-              v-if="restaurant.isFavorited"
-              @click.stop.prevent="deleteFavorite"
-              type="button"
-              class="btn btn-danger mr-2"
-            >
-              移除最愛
-            </button>
-            <button
-              v-else
-              @click.stop.prevent="addFavorite"
-              type="button"
-              class="btn btn-primary"
-            >
-              加到最愛
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul>
+      <li>評論數： {{ restaurant.commentsLength }} }</li>
+      <li>瀏覽次數： {{ restaurant.viewCounts }} }</li>
+    </ul>
+
+    <button
+      type="button"
+      class="btn btn-link"
+      @click="$router.back()"
+    >
+      回上一頁
+    </button>
   </div>
 </template>
 

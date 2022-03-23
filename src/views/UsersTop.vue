@@ -60,7 +60,7 @@ export default {
     methods: {
       fetchUsersTop(){
         const { users } = dummyData
-        this.users = dummyData.users
+        this.users = users
         // console.log(...this.users)
       },
 
@@ -80,9 +80,9 @@ export default {
     <hr>
     <div class="row text-center">
       <Tops 
-       :initial-tops="users"
        v-for="user in users" 
        :key="user.id"
+       :initial-top="user"
       />
     </div>
 

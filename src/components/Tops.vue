@@ -1,26 +1,26 @@
 <script>
 export default {
     props:{
-        initialTops:{
-            type:Array,
+        initialTop:{
+            type: Object,
             required: true,
         }  
     },
     data(){
         return{
-            user: this.initialTops
+          user: this.initialTop
         }
     },
     methods: {
       follow(){
-        this.users = {
-          ...this.users,
+        this.user = {
+          ...this.user,
           isFollowed:true
         }
       },
       unfollow(){
-        this.users = {
-          ...this.users,
+        this.user = {
+          ...this.user,
           isFollowed:false
         }
       },
