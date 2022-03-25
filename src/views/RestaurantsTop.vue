@@ -182,19 +182,26 @@ export default {
       fetchTopRestaurants(){
         this.restaurants = DummyData.restaurants
       },
-      addFavorite(){
+      addFavorite(e){
         console.log('addFavorite');
-        this.restaurant = {
-            ...this.restaurant,  // 保留餐廳內原有資料
-            isFavorited: true
-        }
+        e.isFavorited = true
+        console.log(e);
+        // this.restaurant = {
+        //     ...this.restaurant,  // 保留餐廳內原有資料
+        //     isFavorited: true
+        // }
+        // console.log(restaurant);
+        // restaurant.isFavorited = true
       },
-      deleteFavorite(){
+      deleteFavorite(e){
         console.log('deleteFavorite');
-        this.restaurant = {
-            ...this.restaurant,
-            isFavorited: false
-        }
+        console.log('before e', e);
+        e.isFavorited = false
+        console.log('after e', e);
+        // this.restaurant = {
+        //     ...this.restaurant,
+        //     isFavorited: false
+        // }
       },
     },
     created () {
@@ -221,10 +228,7 @@ export default {
       <div class="row no-gutters">
         <div class="col-md-4">
           <a href="#">
-            <img
-              class="card-img"
-              :src="restaurant.image"
-            >
+            <img class="card-img"  :src="restaurant.image">
           </a>
         </div>
         <div class="col-md-8">
@@ -236,19 +240,15 @@ export default {
             <p class="card-text">
               {{ restaurant.description }}
             </p>
-            <!-- <router-link
-              :to="{ name: 'dashboard'}"
+            <router-link
+              :to="{ name: 'dashboard', params:{id: restaurant.id} }"
               class="btn btn-primary mr-2"
             > Show
-            </router-link> -->
-            <a
-              href="#"
-              class="btn btn-primary mr-2"
-            >Show</a>
+            </router-link>
 
             <button
               v-if="restaurant.isFavorited"
-              @click.stop.prevent="deleteFavorite"
+              @click.stop.prevent="deleteFavorite(restaurant)"
               type="button"
               class="btn btn-danger mr-2"
             >
@@ -256,7 +256,7 @@ export default {
             </button>
             <button
               v-else
-              @click.stop.prevent="addFavorite"
+              @click.stop.prevent="addFavorite(restaurant)"
               type="button"
               class="btn btn-primary"
             >
@@ -270,6 +270,8 @@ export default {
 </template>
 
 
-<style>
-
+<style scoped>
+  .btn{
+    margin-right: 2rem;
+  }
 </style>

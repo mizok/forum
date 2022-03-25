@@ -70,7 +70,7 @@ export default {
         <!-- is user is admin -->
         <router-link
             v-if="currentUser.isAdmin"
-             to="#" 
+             to="/admin" 
              class="text-white me-3"
         >
          管理員後台
