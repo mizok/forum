@@ -50,7 +50,13 @@ export default {
     methods: {
         // 4. 定義 `fetchCategories` 方法，把 `dummyData` 帶入 Vue 物件
         fetchCategories(){
-            this.categories = dummyData.categories
+            this.categories = dummyData.categories.map(category =>(
+                {
+                    ...category,
+                    isEditing: false,
+                    nameCached: ''
+                })
+            )
         },
         createCategory(){
             this.categories.push({
@@ -58,7 +64,45 @@ export default {
                 name: this.newCategoryName
             })
             this.newCategoryName = ''
-        }
+        },
+
+        deleteCategory (categoryId) {
+            // TODO: 透過 API 告知伺服器欲刪除的餐廳類別
+
+            // 將該餐廳類別從陣列中移除
+            this.categories = this.categories.filter(
+                category => category.id !== categoryId
+            )
+        },
+        toggleIsEditing(categoryId){
+            this.categories = this.categories.map(category => {
+                if(categoryId === category.id){
+                    return{
+                        ...category,
+                        isEditing: !category.isEditing,
+                        nameCached: category.name
+                    }
+                }
+                return category
+            })
+        },
+        updateCategory({categoryId, name}){
+            this.toggleIsEditing(categoryId)
+        },
+        handleCancel(categoryId){
+            this.categories = this.categories.map(category => {
+                if( categoryId === category.id ){
+                    return{
+                        ...category,
+
+                        //把原本的餐廳類別還回去
+                        name: category.nameCached
+                    }
+                }
+                return category
+            })
+            this.toggleIsEditing(categoryId)
+        },
     }
 }
 </script>
@@ -99,7 +143,7 @@ export default {
             #
           </th>
           <th scope="col">
-            Category Name
+           料理分類名稱
           </th>
           <th
             scope="col"
@@ -118,22 +162,48 @@ export default {
             {{ category.id }}
           </th>
           <td class="position-relative">
-            <div class="category-name">
-              {{ category.name }}
+            <div 
+              v-show="!category.isEditing"
+              class="category-name">
+                {{ category.name }}
             </div>
+            <input
+                v-show="category.isEditing"
+                v-model="category.name"
+                type="text"
+                class="form-control"
+            >
+            <span
+                v-show="category.isEditing"
+                class="cancel"
+                @click.stop.prevent="handleCancel(category.id)"
+            >
+                ✕
+            </span>
           </td>
           <td class="d-flex justify-content-between">
             <button
+              v-show="!category.isEditing"
               type="button"
               class="btn btn-link mr-2"
+              @click.stop.prevent="toggleIsEditing(category.id)"
             >
-              Edit
+              編輯
+            </button>
+            <button
+                v-show="category.isEditing"
+                type="button"
+                class="btn btn-link mr-2"
+                @click.stop.prevent="updateCategory({ categoryId: category.id, name: category.name })"
+            >
+                Save
             </button>
             <button
               type="button"
               class="btn btn-link mr-2"
+              @click.stop.prevent="deleteCategory(category.id)"
             >
-              Delete
+              刪除
             </button>
           </td>
         </tr>
@@ -143,6 +213,32 @@ export default {
 </template>
 
 
-<style>
+<style scoped>
+    .category-name {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid transparent;
+  outline: 0;
+  cursor: auto;
+}
 
+.btn-link {
+  width: 62px;
+}
+
+.cancel {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #aaaaaa;
+  border-radius: 50%;
+  user-select: none;
+  cursor: pointer;
+  font-size: 12px;
+}
 </style>

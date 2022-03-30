@@ -60,7 +60,7 @@
 </template>
 
 <script>
-
+import authorizationAPI from './../apis/authorization'
 export default {
   data(){
     return {
@@ -70,12 +70,24 @@ export default {
   },
   methods:{
     handleSubmit () {
-      // let t = e.target
-      const data = JSON.stringify({
+      // const data = JSON.stringify({
+      //   email: this.email,
+      //   password: this.password
+      // })
+      authorizationAPI.signIn({
         email: this.email,
         password: this.password
+      }).then(response => {
+        // TODO: 取得 API 請求後的資料
+        // 取得 API 請求後的資料
+        const { data } = response
+        console.log('response', response)
+        // 將 token 存放在 localStorage 內
+        localStorage.setItem('token', data.token)
+        // 成功登入後轉址到餐廳首頁
+        this.$router.push('/restaurants')
       })
-      console.log('data', data)   
+      // console.log('data', data)  
     },
   }, 
 }

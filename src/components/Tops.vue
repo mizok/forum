@@ -31,7 +31,7 @@ export default {
 <template>
       <!-- <div class="row text-center"> -->
       <div class="col-3">
-        <router-link to="/">
+        <router-link  :to="{ name:'user', params:{id: user.id} }">
           <img
             src="http://via.placeholder.com/300x300?text=No+Image"
             width="140px"
@@ -62,6 +62,8 @@ export default {
     <!-- </div> -->
 </template>
 
-<style>
-
+<style scoped>
+  .badge{
+    background-color: #d3d3d3;
+  }
 </style>

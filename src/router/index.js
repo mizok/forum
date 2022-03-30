@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    redirect:'/restaurants'
+    redirect:'/signin'
   },
   {
     path: '/restaurants',
@@ -43,6 +43,11 @@ const routes = [
     name: 'users-top',
     component: () => import('../views/UsersTop.vue')
   },
+  {
+    path: '/users/:id',
+    name: 'user',
+    component: () => import('../views/User.vue')
+  },
 
   {
     path: '/admin/restaurants',
@@ -72,6 +77,12 @@ const routes = [
     path: '/admin/categories',
     name: 'admin-categories',
     component: () => import('../views/AdminCategories.vue')
+  },
+
+  {
+    path: '/admin/users',
+    name: 'AdminUsers',
+    component: () => import('../views/AdminUsers.vue')
   },
   
   {
