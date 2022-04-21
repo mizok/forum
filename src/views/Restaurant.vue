@@ -6,11 +6,11 @@ import CreateComment from "./../components/CreateComment.vue";
 const dummyData = {
     "restaurant": {
         "id": 1,
-        "name": "William Larkin DVM",
+        "name": "木木便當",
         "tel": "275.597.3899 x544",
-        "address": "80945 Windler Highway",
+        "address": "500 彰化市建國北路120號",
         "opening_hours": "08:00",
-        "description": "nobis",
+        "description": "各種素食美味料理唷~以木頭裝潢的溫暖風格，素食的變化讓人可以開心吃素",
         "image": "https://loremflickr.com/320/240/restaurant,food/?random=14.44538201517165",
         "viewCounts": 1,
         "createdAt": "2022-03-09T19:19:25.000Z",
@@ -167,7 +167,7 @@ export default {
                     id: this.currentUser.id,
                     name: this.currentUser.name
                 },
-                text: text,
+                text,
                 createdAt: new Date()
             })
         },
@@ -183,7 +183,6 @@ export default {
 
 <template>
   <div class="container py-5">
-    <h1>餐廳描述頁</h1>
     <!-- 餐廳資訊頁 RestaurantDetail -->
     <RestaurantDetail :initial-restaurant="restaurant" />
     <hr>

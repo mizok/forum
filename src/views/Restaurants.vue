@@ -3,6 +3,8 @@ import NavTabs from "./../components/NavTabs.vue";
 import RestaurantsNavPills from "./../components/RestaurantsNavPills.vue";
 import RestaurantsCard from "./../components/RestaurantsCard.vue";
 import RestaurantPagination from "./../components/RestaurantPagination.vue";
+import restaurantsAPI from './../apis/restaurants'
+import { Toast } from "./../utils/helpers";
 
 const dummyData = {
     "restaurants": [
@@ -311,9 +313,35 @@ export default {
             this.previousPage = prev
             this.nextPage = next
         },
+        // async fetchRestaurants({queryPage, queryCategoryId}){
+        //     try {
+        //         const response = await restaurantsAPI.getRestaurants({
+        //             page: queryPage,
+        //             categoryId: queryCategoryId
+        //         })
+        //         console.log('response', response);
+        //     } catch (error) {
+        //         console.log('error', error);
+        //       Toast.fire({
+        //           icon: 'error',
+        //           title: '無法取得餐廳資料，請稍後再試'
+        //       })
+        //     }
+        //     this.restaurants = restaurants
+        //     this.categories= categories
+        //     this.categoryId = categoryId
+        //     this.currentPage = page
+        //     this.totalPage = totalPage
+        //     this.previousPage = prev
+        //     this.nextPage = next
+        // },
+        
     },
     created(){
-        this.fetchRestaurants()
+        this.fetchRestaurants({
+            queryPage: '',
+            queryCategoryId: ''
+        })
     }
 }
 </script>
@@ -338,7 +366,7 @@ export default {
          :total-page="totalPage"        
          :previous-page="previousPage"
          :next-page="nextPage"
-         :categoryId="categoryId"   
+         :category-id="categoryId"   
         />
     </div>
 

@@ -93,7 +93,7 @@ export default {
         }
     },
     methods:{
-        fetchRest(){
+    fetchRest(){
             const { id, name, tel, address, viewCounts, Category, Comments } = DummyData.restaurant
             this.restaurant = {
                 ...this.restaurant,

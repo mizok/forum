@@ -2,8 +2,8 @@
 const dummyData = {
   profile: {
     id: 1,
-    name: "root",
-    email: "root@example.com",
+    name: "Daisy",
+    email: "soniahsiao16@example.com",
     password: "$2a$10$OJ3jR93XlEMrQtYMWOIQh.EINWgaRFTXkd0Xi5OC/Vz4maztUXEPe",
     isAdmin: true,
     image: "https://i.imgur.com/58ImzMM.png",
@@ -1272,24 +1272,49 @@ export default {
     UserFollowingsCard
   },
   data() {
+      return{
+            user:{
+                id: 0,
+                name: '',
+                email: '',
+                Comments: 0,
+                FavoritedRestaurants: 0,
+                Followers: 0,
+                Followings: 0,
+            },
+            isFollowed: false,
+        }
+    },
+  methods: {
+    fetchUser(userId){
       const {profile} = dummyData 
       const {id,name,email,password,isAdmin,image,createdAt,updatedAt,
             Comments,FavoritedRestaurants,Followers,Followings} = profile
-      return{
-            profile:{
-                id: 0,
-                name: ''
-            }
-        }
-    },
-  methods: {},
+
+      this.user = {
+        ...this.profile,
+        id, name, 
+        email, password, isAdmin,
+        createdAt, updatedAt,
+        image, Comments, FavoritedRestaurants, Followers, Followings
+      }
+      this.isFollowed = isFollowed
+
+    }
+  },
+  created(){
+    const { id } = this.$route.params
+    this.fetchUser(id)
+  }
 };
 </script>
 
 <template>
   <div class="album py-5 bg-light">
     <div class="container">
-        <UserProfileCard />
+        <UserProfileCard 
+        :initial-user="user"
+        :initial-isFollowed="isFollowed" />
 
       <div class="row">
         <div class="col-md-4">

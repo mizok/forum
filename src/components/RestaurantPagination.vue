@@ -3,7 +3,7 @@ export default {
     name: 'Pagination',
     props:{
       categoryId: {
-        type: [String, Number],
+        type: [ Number,String ],
         default: ''
       },
       currentPage:{
@@ -33,18 +33,12 @@ export default {
         <!-- 前一頁 previousPage -->
         <li 
           v-show="previousPage"
-          :class="[
-            'page-item',
-            {
-              disabled: currentPage === 1 
-            }
-          ]"
+          :class="['page-item',{ disabled: currentPage === 1 } ]"
         >
           <router-link
             aria-label="Previous"
             class="page-link"
-            :to="{name: 'restaurants',
-              query: { categoryId, page: previousPage }}"
+            :to="{name: 'restaurants',  query: { categoryId, page: previousPage }}"
           >
             <span aria-hidden="true">&laquo;</span>
           </router-link>        
@@ -53,11 +47,9 @@ export default {
 
         <!-- 頁碼 -->
         <li 
-          :class="[
-          'page-item', 
-          {active: currentPage === page}]"
           v-for="page in totalPage"
           :key="page"
+          :class="['page-item', { active: currentPage === page} ]"
         >
           <router-link
             class="page-link"
