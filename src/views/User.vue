@@ -1313,8 +1313,8 @@ export default {
   <div class="album py-5 bg-light">
     <div class="container">
         <UserProfileCard 
-        :initial-user="user"
-        :initial-isFollowed="isFollowed" />
+        :initialUser="user"
+        :initialIsFollowed="isFollowed" />
 
       <div class="row">
         <div class="col-md-4">
