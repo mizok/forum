@@ -1287,7 +1287,7 @@ export default {
     },
   methods: {
     fetchUser(userId){
-      const {profile} = dummyData 
+      const {profile, isFollowed} = dummyData 
       const {id,name,email,password,isAdmin,image,createdAt,updatedAt,
             Comments,FavoritedRestaurants,Followers,Followings} = profile
 

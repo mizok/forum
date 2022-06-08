@@ -1,4 +1,10 @@
 <script>
+import { emptyImageFilter } from './../utils/mixins'
+import usersAPI from "./../apis/users";
+import { Toast } from "./../utils/helpers";
+
+
+
 export default {
     props:{
         initialRestaurant:{
@@ -11,12 +17,25 @@ export default {
             restaurant: this.initialRestaurant
         }
     },
-    methods:{
-        addFavorite(){
+    methods:{      
+        async addFavorite( restaurantID ){
+          try{
+            const { data } = await usersAPI.addFavorite({ restaurantID })
+            if(data.status !== 'success'){
+              throw new Error(data.message)
+            }
+            console.log('isFavorited');
             this.restaurant = {
                 ...this.restaurant,  // 保留餐廳內原有資料
                 isFavorited: true
             }
+          } catch (error) {
+            console.log('error', error);
+            Toast.fire({
+              icon: 'error',
+              title: '無法將餐廳加入最愛，請稍後再試'
+            })            
+          }
         },
         deleteFavorite(){
             this.restaurant = {
@@ -74,7 +93,7 @@ export default {
           type="button"
           class="btn btn-primary btn-border favorite mr-2"
           v-else
-          @click.stop.prevent="addFavorite"
+          @click.stop.prevent="addFavorite(restaurant.id)"
         >
           加到最愛
         </button>

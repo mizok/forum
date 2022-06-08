@@ -124,13 +124,12 @@ export default {
       <label for="categoryId">餐廳類別</label>
       <select
         id="categoryId"
-        v-model="restaurant.categoryId"
+        v-model="restaurant.CategoryId"
         class="form-control"
-        name="categoryId"
+        name="CategoryId"
         required
       >
         <option
-          value=""
           selected
           disabled
         >
@@ -140,7 +139,7 @@ export default {
         <option 
           v-for="category in categories"
           :key="category.id"
-          value="">
+          :value="category.id">
             {{ category.name }}
         </option>
 

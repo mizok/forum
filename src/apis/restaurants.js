@@ -7,6 +7,11 @@ export default{
         return apiHelper.get(`/restaurants?${searchParams.toString()}`, {
             headers: { Authorization: `Bearer ${getToken()}` }
         })
-
+    },
+    getFeeds({ page, categoryId }){
+        const searchParams = new URLSearchParams({ page, categoryId })
+        return apiHelper.get(`/restaurants?${searchParams.toString()}`, {
+            headers: { Authorization: `Bearer ${getToken()}` }
+        })
     }
 }

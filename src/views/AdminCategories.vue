@@ -86,10 +86,10 @@ export default {
                 return category
             })
         },
-        updateCategory({categoryId, name}){
+        updateCategory({categoryId, name}){                         //儲存編輯
             this.toggleIsEditing(categoryId)
         },
-        handleCancel(categoryId){
+        handleCancel(categoryId){                                   //取消編輯
             this.categories = this.categories.map(category => {
                 if( categoryId === category.id ){
                     return{

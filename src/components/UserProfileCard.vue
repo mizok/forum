@@ -22,14 +22,15 @@ export default {
       addFollowing(){
         this.user = {
           ...this.user,
-          isFollowed: true
         }
+        this.isFollowed = true
+        console.log('追蹤成功!');
       },
       deleteFollowing(){
         this.user = {
           ...this.user,
-          isFollowed: false
         }
+        this.isFollowed = false
       },
     },
 
