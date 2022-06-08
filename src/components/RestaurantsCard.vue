@@ -17,14 +17,26 @@ export default {
             restaurant: this.initialRestaurant
         }
     },
-    methods:{      
-        async addFavorite( restaurantID ){
+    methods:{   
+        // addFavorite(){
+        //   console.log('isFavorited');
+        //     this.restaurant = {
+        //         ...this.restaurant,
+        //         isFavorited: true
+        //     }
+        // },         
+        async addFavorite( restaurantId ){
+          console.log(restaurantId);
           try{
-            const { data } = await usersAPI.addFavorite({ restaurantID })
-            if(data.status !== 'success'){
-              throw new Error(data.message)
+            console.log('Do u try??????');
+            const response  = await usersAPI.addFavorite( restaurantId )
+            console.log('response', response);   //到這裡，開始失敗
+            
+            if(response.data.status !== 'success'){
+              console.log('not success');
+              throw new Error(response.data.message)
             }
-            console.log('isFavorited');
+            console.log('加入最愛');
             this.restaurant = {
                 ...this.restaurant,  // 保留餐廳內原有資料
                 isFavorited: true
@@ -43,13 +55,13 @@ export default {
         //         isFavorited: false
         //     }
         // },
-        async addFavorite( restaurantID ){
+        async deleteFavorite( restaurantId ){
           try{
-            const { data } = await usersAPI.addFavorite({ restaurantID })
+            const { data } = await usersAPI.deleteFavorite( restaurantId )
             if(data.status !== 'success'){
               throw new Error(data.message)
             }
-            console.log('isFavorited');
+            console.log('移除最愛');
             this.restaurant = {
                 ...this.restaurant,  // 保留餐廳內原有資料
                 isFavorited: false

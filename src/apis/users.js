@@ -2,7 +2,8 @@ import { apiHelper } from './../utils/helpers'
 const getToken = () => localStorage.getItem('token')
 
 export default{
-    addFavorite( {restaurantId} ){
+    addFavorite( restaurantId ){
+        console.log('restaurantId', restaurantId);
         return apiHelper.post(`/favorite/${restaurantId}`, null, {
             headers: {
                 Authorization: `Bearer ${getToken()}`
@@ -10,7 +11,7 @@ export default{
         })
     },
 
-    deleteFavorite( {restaurantId} ){
+    deleteFavorite( restaurantId ){
         return apiHelper.delete(`/favorite/${restaurantId}`, {
             headers: {
                 Authorization: `Bearer ${getToken()}`
