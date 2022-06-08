@@ -17,9 +17,17 @@ export default {
             restaurant: this.initialRestaurant
         }
     },
-    methods:{      
+    methods:{   
+        // addFavorite(){
+        //   console.log('isFavorited');
+        //     this.restaurant = {
+        //         ...this.restaurant,
+        //         isFavorited: true
+        //     }
+        // },         
         async addFavorite( restaurantID ){
           try{
+            console.log('Do u try??????');
             const { data } = await usersAPI.addFavorite({ restaurantID })
             if(data.status !== 'success'){
               throw new Error(data.message)
@@ -37,31 +45,31 @@ export default {
             })            
           }
         },
-        // deleteFavorite(){
-        //     this.restaurant = {
-        //         ...this.restaurant,
-        //         isFavorited: false
-        //     }
-        // },
-        async addFavorite( restaurantID ){
-          try{
-            const { data } = await usersAPI.addFavorite({ restaurantID })
-            if(data.status !== 'success'){
-              throw new Error(data.message)
-            }
-            console.log('isFavorited');
+        deleteFavorite(){
             this.restaurant = {
-                ...this.restaurant,  // 保留餐廳內原有資料
+                ...this.restaurant,
                 isFavorited: false
             }
-          } catch (error) {
-            console.log('error', error);
-            Toast.fire({
-              icon: 'error',
-              title: '無法將餐廳移除最愛，請稍後再試'
-            })            
-          }
-        },        
+        },
+        // async addFavorite( restaurantID ){
+        //   try{
+        //     const { data } = await usersAPI.addFavorite({ restaurantID })
+        //     if(data.status !== 'success'){
+        //       throw new Error(data.message)
+        //     }
+        //     console.log('isFavorited');
+        //     this.restaurant = {
+        //         ...this.restaurant,  // 保留餐廳內原有資料
+        //         isFavorited: false
+        //     }
+        //   } catch (error) {
+        //     console.log('error', error);
+        //     Toast.fire({
+        //       icon: 'error',
+        //       title: '無法將餐廳移除最愛，請稍後再試'
+        //     })            
+        //   }
+        // },        
         addLike(){
             this.restaurant = {
                 ...this.restaurant,  // 保留餐廳內原有資料
@@ -104,7 +112,7 @@ export default {
           type="button"
           class="btn btn-danger btn-border favorite mr-2"
           v-if="restaurant.isFavorited"
-          @click.stop.prevent="deleteFavorite(restaurant.id)"
+          @click.stop.prevent="deleteFavorite"
         >
           移除最愛
         </button>
