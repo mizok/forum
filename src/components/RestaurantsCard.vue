@@ -37,12 +37,31 @@ export default {
             })            
           }
         },
-        deleteFavorite(){
+        // deleteFavorite(){
+        //     this.restaurant = {
+        //         ...this.restaurant,
+        //         isFavorited: false
+        //     }
+        // },
+        async addFavorite( restaurantID ){
+          try{
+            const { data } = await usersAPI.addFavorite({ restaurantID })
+            if(data.status !== 'success'){
+              throw new Error(data.message)
+            }
+            console.log('isFavorited');
             this.restaurant = {
-                ...this.restaurant,
+                ...this.restaurant,  // 保留餐廳內原有資料
                 isFavorited: false
             }
-        },
+          } catch (error) {
+            console.log('error', error);
+            Toast.fire({
+              icon: 'error',
+              title: '無法將餐廳移除最愛，請稍後再試'
+            })            
+          }
+        },        
         addLike(){
             this.restaurant = {
                 ...this.restaurant,  // 保留餐廳內原有資料
@@ -85,7 +104,7 @@ export default {
           type="button"
           class="btn btn-danger btn-border favorite mr-2"
           v-if="restaurant.isFavorited"
-          @click.stop.prevent="deleteFavorite"
+          @click.stop.prevent="deleteFavorite(restaurant.id)"
         >
           移除最愛
         </button>
