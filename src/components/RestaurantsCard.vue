@@ -74,18 +74,57 @@ export default {
             })            
           }
         },        
-        addLike(){
+        // addLike(){
+        //     this.restaurant = {
+        //         ...this.restaurant,  
+        //         isLiked: true
+        //     }
+        // },
+        async addLike( restaurantId ){
+          try{
+            const { data } = await usersAPI.addLike( restaurantId )
+            if(data.status !== 'success'){
+              throw new Error(data.message)
+            }
+            console.log('按讚');  
             this.restaurant = {
-                ...this.restaurant,  // 保留餐廳內原有資料
+                ...this.restaurant,  
                 isLiked: true
-            }
+            }                       
+          } catch (error) {
+            console.log('error', error);
+            Toast.fire({
+              icon: 'error',
+              title: '無法對餐廳按讚，請稍後再試'
+            })   
+          }
         },
-        deleteLike(){
-            this.restaurant = {
-                ...this.restaurant,  // 保留餐廳內原有資料
-                isLiked: false
+
+        // deleteLike(){
+        //     this.restaurant = {
+        //         ...this.restaurant,  // 保留餐廳內原有資料
+        //         isLiked: false
+        //     }
+        // },
+        async deleteLike( restaurantId ){
+          try{
+            const { data } = await usersAPI.deleteLike( restaurantId )
+            if(data.status !== 'success'){
+              throw new Error(data.message)
             }
-        }
+            console.log('取消讚');  
+            this.restaurant = {
+                ...this.restaurant,  
+                isLiked: false
+            } 
+          } catch (error) {
+            console.log('error', error);
+            Toast.fire({
+              icon: 'error',
+              title: '無法對餐廳移除讚，請稍後再試'
+            })   
+          }
+        },
     },
 }
 </script>
@@ -132,7 +171,7 @@ export default {
           type="button"
           class="btn btn-danger like mr-2"
           v-if="restaurant.isLiked"
-          @click.stop.prevent="deleteLike"
+          @click.stop.prevent="deleteLike(restaurant.id)"
         >
           Unlike
         </button>
@@ -140,7 +179,7 @@ export default {
           type="button"
           class="btn btn-primary like mr-2"
           v-else
-          @click.stop.prevent="addLike"
+          @click.stop.prevent="addLike(restaurant.id)"
         >
           Like
         </button>
