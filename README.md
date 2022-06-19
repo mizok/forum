@@ -14,5 +14,5 @@ npx sequelize db:seed:all
 
 `db:migrate` 是同步資料庫結構
 `db:seed:all` 則是生成資料庫初始mock檔案
-``
+
 4. 接著就可以開始run 專案了(記得vue 的web server 和 node.js 的dev server都要打開)
